@@ -1,0 +1,42 @@
+
+	Pentru citirea din fisier a valorilor, am folosit functia fget pentru 
+a citi linie cu line, iar apoi folosesc functia str2num pentru a converti 
+string-ul in format numeric. Fiecare linie este un vector, din care extrag 
+punctele de pe Ox si de pe Oy si le folosesc pentru prelucrare. La task-ul 
+3, sortez elementele din vectorul x, si le interschimb pe cele corespunzatoare 
+din vectorul y.
+
+	In functia neville, folosesc o matrice in care am pe prima coloana vectorul y.
+Apoi, pentru fiecare valoare din vectorul de puncte echidistante de pe axa Ox, 
+calculez valoarea polinomului. Valorile de pe coloana urmatoare din matrice sunt 
+calculate in functie de valorile de pe coloana precedenta. Este generata o 
+piramida de valori a polinomului Neville, iar celelalte valori nefolosite din matrice 
+raman 0. Valoarea finala este cea din coltul stanga-jos al matricei, matricea fiind 
+inferior triunghiulara.
+
+	In functia linearspline, calculez valorile pe Oy corespunzatoare punctelor echidistante 
+de pe axa Ox cu acea formula, care rezulta din conditiile de interpolare si de racordare a
+spline-urilor liniare (y = a*x + b). Pentru valorile echidistante dintr-un interval, folosesc 
+un for in care parcurg vectorul x, si ma opresc cand am gasit o valoare din vectorul x mai mare 
+decat valoarea curenta din x_in (vectorul care contine punctele echidistante de pe axa Ox). 
+Calculez spline-ul liniar pe fiecare interval.
+
+	In functia naturalspline, initial generez un vector h in care retin diferenta 
+elementelor din x, si un vector b in care retin derivatele in fiecare punct din h. 
+Acesti vectori ii folosesc pentru generarea matricei tridiagonale simetrice si 
+pentru generarea vectorului liber. Subdiagonala si supradiagonala matricei sunt 
+date tot de vectorul h, dar cu un element mai putin. Cand h are un element, 
+diagonala matricei e chiar acel element, iar vectorul liber e chiar valoarea din b. 
+Altfel, cand sunt mai multe valori in h si b, calculez diagonala si vectorul liber 
+pe baza acelor formule. Coeficientii s0, s1, s2, s3 se vor exprima in functie de 
+vectorul sigma, care reprezinta valorile derivatei a doua intr-un punct a spline-ului 
+cubic. Acest vector il calculez cu ajutorul algoritmului Thomas. La acest vector adaug 
+inca doua valori( conditiile date de spline-ul natural), adica doua zerouri. Formulele 
+folosite, au rezultat din conditiile de interpolare si de racordare a spline-ului cubic.
+Dupa aflarea coeficientilor, calculez calculez valorile pe Oy corespunzatoare punctelor 
+echidistante de pe axa Ox, cu ajutorul acestor coeficienti.
+
+	In functia clampedspline, folosesc aceleasi formule si aceiasi vectori ca in functia 
+natural spline, numai ca modific valorile de la capetele diagonalei matricei, a vectorului 
+liber si a vectorului sigma. Valorile de la capetele vectorului liber si a vectorului sigma 
+sunt calculate in functie de derivatele la capetele intervalui(prima valoare din x si ultima).
