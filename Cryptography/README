@@ -1,0 +1,21 @@
+TASK 01
+
+	La subpunctul a) am pus sirul de caractere convertite in numere intr-o matrice cu n linii, 
+pentru a putea inmulti matricea cheie cu aceasta. Dupa inmultire am transformat matricea rezultata 
+inapoi in vector.
+	
+	La subpunctul b) am folosit metoda Gauss-Jordan de calculare a inversei unei matrici, dar putin modificata, 
+deoarece metoda cu determinant este instabila din punct de vedere numeric. Modificarile constau in calcularea 
+inversului modulo 29 al pivotului si inmultirea liniei pe care se afla pivotul cu acesta, si aplicat modulo 29 
+pe linie. Transformarea sirului este ca la a).
+
+La subpunctul c) am generat o matrice de transpozitie care are cheia k pe ultima coloana, pana la linia n-1, si 
+elementul 1 pe diagonala si in rest 0. Am inmultit aceasta matrice cu fiecare vector din sirul de caractere si am 
+numarat caracterele parcurse, astfel incat atunci cand am ajuns la 1000 sau la un multiplu al acestuia, caracterele aflate 
+inainte de 1000 sa fie modificate cu k, si cele de dupa 1001, cu k+1. Am tinut cont si de faptul ca trebuie sa codific n 
+caractere la fiecare pas, si astfel am generat o matrice de transpozitie de dimensiune (n+1)X(n+1), si am adaugat la fiecare vector 
+cate un 1 la final, ca sa pot inmulti.
+
+TASK 02
+
+Pentru acest task am folosit metoda recursiva Strassen de inmultire a doua matrici, aplicata si pe submatricile din metoda de calculare a inversei prin partionare, tot recursiva. Inmultirile au fost facute in timp logaritmic. Dupa fiecare inmultire dintre doua submatrici, in partitionare, am readus matricea rezultata la dimensiunea corecta, astfel incat sa se poata realiza inmultirea cu celelalte submatrici. Conditia de oprire pentru cele doua metode este 32x32. 
